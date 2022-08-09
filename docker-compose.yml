@@ -1,0 +1,17 @@
+web:
+    image: nginx:latest
+    ports:
+        - "8080:80"
+    volumes:
+        - ./code:/code
+        - ./site.conf:/etc/nginx/conf.d/site.conf
+        - ./code/index.php:/usr/share/nginx/html/index.php
+    links:
+        - php
+php:
+    image: php:7-fpm
+    ports:
+        - "8081:80"
+    volumes:
+        -  ./code:/code
+        -  ./code/index.php:/usr/share/nginx/html/index.php
