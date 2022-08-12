@@ -5,7 +5,7 @@ web:
     volumes:
         - ./code:/code
         - ./site.conf:/etc/nginx/conf.d/site.conf
-        - ./code/:/usr/share/nginx/html/
+        - ./code/index.php:/usr/share/nginx/html/index.php
           # наш конфиг при исправности конфига по умолчанию не дает нгинксу работать ожидаемым образом.
         - /dev/zero:/etc/nginx/conf.d/default.conf
     links:
@@ -16,3 +16,4 @@ php:
         - "8081:80"
     volumes:
         -  ./code:/code
+        -  ./code/index.php:/usr/share/nginx/html/index.php
